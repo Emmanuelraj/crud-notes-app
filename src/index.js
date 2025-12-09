@@ -63,9 +63,11 @@ app.get('/notes/:id', async (req, res) => {
   }
 });
 
-app.get('/hello', (req,res)=>{
-    res.send('hello');
+app.get('/cd', (req,res)=>{
+    res.send('cd');
 });
+
+
 
 
 // update By Id
