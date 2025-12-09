@@ -71,6 +71,10 @@ app.get("/health-check", (req, res) => {
   res.send("health-check Server is running 🚀");
 });
 
+app.get("/cicd", (req, res) => {
+  res.send("cicd is running 🚀");
+});
+
 
 
 // update By Id
