@@ -67,8 +67,8 @@ app.get('/cd', (req,res)=>{
     res.send('cd');
 });
 
-app.get("/cicd", (req, res) => {
-  res.send("CICD Server is running 🚀");
+app.get("/health-check", (req, res) => {
+  res.send("health-check Server is running 🚀");
 });
 
 
