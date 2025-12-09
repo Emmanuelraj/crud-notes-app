@@ -63,6 +63,10 @@ app.get('/notes/:id', async (req, res) => {
   }
 });
 
+app.get('/hello', (req,res)=>{
+    res.send('hello');
+});
+
 
 // update By Id
 app.put('/notes/:id', async (req, res) => {
