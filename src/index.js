@@ -76,6 +76,11 @@ app.get("/ci-cdpipeline", (req, res) => {
 });
 
 
+// Example: src/index.js
+app.get("/test-ci", (req, res) => {
+  res.send("CI/CD test endpoint 🚀");
+});
+
 
 // update By Id
 app.put('/notes/:id', async (req, res) => {
