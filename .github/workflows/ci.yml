@@ -1,36 +1,51 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
+# Trigger on push to main and PRs targeting main
 on:
   push:
     branches:
       - main
-      - feature/**
   pull_request:
     branches:
       - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [18, 22]
 
     steps:
+      # 1️⃣ Checkout the repo
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      # 2️⃣ Setup Node
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
+      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # 4️⃣ Generate Prisma client
       - name: Generate Prisma Client
         run: npx prisma generate
 
-      - name: Run Tests (placeholder)
+      # 5️⃣ Run tests (placeholder)
+      - name: Run Tests
         run: echo "No tests yet"
+
+      # 6️⃣ Trigger Render deploy
+      - name: Deploy to Render
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          curl -X POST \
+          -H "Authorization: Bearer $RENDER_API_KEY" \
+          -H "Content-Type: application/json" \
+          -d '{"serviceId": "srv-d4rt62q4d50c73b3e1i0"}' \
+          https://api.render.com/v1/services/srv-d4rt62q4d50c73b3e1i0/deploys
