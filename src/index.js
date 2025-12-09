@@ -67,6 +67,9 @@ app.get('/cd', (req,res)=>{
     res.send('cd');
 });
 
+app.get("/health-check", (req, res) => {
+  res.send("health-check Server is running 🚀");
+});
 
 
 
